@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface Page {
     name: string;
     address: string;
@@ -11,8 +13,8 @@ export function PagesList({pages}:PagesListProps) {
     return(
         <div className="flex flex-row gap-5 justify-center items-center">
             {pages.map((page, idx) => (
-                <>
-                    <a 
+                <React.Fragment key={page.address}>
+                    <a
                         onClick={() => redirect(page.address)}
                         className="cursor-pointer"
                     >
@@ -22,7 +24,7 @@ export function PagesList({pages}:PagesListProps) {
                     {idx != 1 && (
                         <div className="h-5 border-l border-1 border-gray-500"></div>
                     )}
-                </>
+                </React.Fragment>
             ))}
         </div>
     )
