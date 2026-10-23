@@ -10,11 +10,25 @@ interface PagesListProps {
 export function PagesList({pages}:PagesListProps) {
     return(
         <div className="flex flex-row gap-5 justify-center items-center">
-            {pages.map((page) => (
-                <div>
-                    {page.name}
-                </div>
+            {pages.map((page, idx) => (
+                <>
+                    <a 
+                        onClick={() => redirect(page.address)}
+                        className="cursor-pointer"
+                    >
+                        {page.name}
+                    </a>
+
+                    {idx != 1 && (
+                        <div className="h-5 border-l border-1 border-gray-500"></div>
+                    )}
+                </>
             ))}
         </div>
     )
 }
+
+function redirect(path:string) {
+    return window.location.href = path;
+}
+
